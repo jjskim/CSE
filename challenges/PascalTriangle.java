@@ -7,19 +7,43 @@ public class PascalTriangle {
       Scanner console = new Scanner(System.in);
       System.out.print("How many rows? ");
       int numRows = console.nextInt();
-      drawPascal(numRows);
-      
+      //drawPascal(numRows);
+      drawPascalBinomialExpansion(numRows);
    }
    
    public static void drawPascal(int numRows) {
       for (int i = 0; i < numRows; i++) {
          int number = 1;
-         System.out.printf("%" + (numRows - i) * 2 + "s", "");
          for (int j = 0; j <= i; j++) {
-            System.out.printf("%4d", number);
+            System.out.print(number + " ");
             number = number * (i - j) / (j + 1);
          }
          System.out.println();
       }
+   }
+   
+      
+   public static void drawPascalBinomialExpansion(int numRows) {
+      for (int i = 0; i < numRows; i++) {
+         for (int j = 0; j <= i; j++) {
+            System.out.print(nChooseK(i, j) + " ");
+         }
+         System.out.println();
+      }
+   }
+   
+   public static int nChooseK(int n, int k) {
+      int numerator = factorial(n);
+      int denominator = factorial(k) * factorial(n - k);
+      return numerator / denominator;
+      
+   }
+   
+   public static int factorial(int num) {
+      int result = 1;
+      for (int i = 1; i <= num; i++) {
+         result *= i;
+      }
+      return result;
    }
 }
