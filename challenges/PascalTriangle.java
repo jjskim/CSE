@@ -7,8 +7,10 @@ public class PascalTriangle {
       Scanner console = new Scanner(System.in);
       System.out.print("How many rows? ");
       int numRows = console.nextInt();
-      //drawPascal(numRows);
+
+      drawPascal(numRows);
       drawPascalBinomialExpansion(numRows);
+      drawPascalRecursive(numRows);
    }
    
    public static void drawPascal(int numRows) {
@@ -45,5 +47,22 @@ public class PascalTriangle {
          result *= i;
       }
       return result;
+   }
+   
+   public static void drawPascalRecursive(int numRows) {
+      for (int i = 0; i < numRows; i++) {
+         for (int j = 0; j <= i; j++) {
+            System.out.print(pascal(i, j) + " ");
+         }
+         System.out.println();
+      }
+   }
+   
+   public static int pascal(int i, int j) {
+      if (j == 0 || j == i) {
+         return 1;
+      } else {
+         return pascal(i - 1, j - 1) + pascal(i - 1, j);
+      }
    }
 }
